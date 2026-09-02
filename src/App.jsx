@@ -1,9 +1,11 @@
-import Hero from "./components/hero/Hero"
+// import CategoriesPage from "./pages/CategoriesPage"
+import DetailsPage from "./pages/DetailsPage"
 
 const App = () => {
   return (
-    <div className="bg-[#0E1325] px-3 pt-3 h-screen w-full overflow-hidden">
-      <Hero/>
+    <div className="bg-[#0E1325] px-3 pt-3 pb-10 w-full ">
+      {/* <CategoriesPage/> */}
+      <DetailsPage/>
     </div>
   )
 }
