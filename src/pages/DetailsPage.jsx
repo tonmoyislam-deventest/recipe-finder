@@ -5,7 +5,7 @@ import RecipeInfo from "../components/details/recipe-info/recipeInfo";
 
 const DetailsPage = () => {
   return (
-    <div className="max-w-337.5 m-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-337.5 m-auto px-4 pb-10 sm:px-6 lg:px-8">
       <div className="max-w-290 m-auto">
         {/* header */}
         <DetailsHeader />

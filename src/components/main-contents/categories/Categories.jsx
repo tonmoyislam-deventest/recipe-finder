@@ -1,7 +1,16 @@
+import { useContext } from "react"
+import { RecipeContext } from "../../all-context/Contexts.jsx"
+
+
 const Categories = () => {
+  const [categories,setCategories] = useContext(RecipeContext);
+
+      console.log(categories);
+
   return (
     <div className="w-full">
       {/* left */}
+      {/* {categories.map()} */}
       <button
         className="h-15 w-full border border-[#E5E7EB] flex items-center text-white overflow-hidden focus:bg-yellow-300 focus:text-black cursor-pointer rounded-xl mb-3 outline-none"
       >
@@ -12,7 +21,7 @@ const Categories = () => {
         <p>Beef</p>
       </button>
 
-      <button
+      {/* <button
         className="h-15 w-full border border-[#E5E7EB] flex items-center text-white overflow-hidden focus:bg-yellow-300 300 focus:text-black cursor-pointer rounded-xl mb-3 outline-none"
       >
         <img
@@ -60,7 +69,7 @@ const Categories = () => {
           className="h-full w-15 -translate-x-4.5 object-fill"
         ></img>
         <p>Pasta</p>
-      </button>
+      </button> */}
     </div>
 
   )
