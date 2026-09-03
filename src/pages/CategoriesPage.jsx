@@ -5,7 +5,6 @@ const CategoriesPage = () => {
     return (
         <div className="max-w-337.5 m-auto">
             <Hero />
-
             <div className="w-full px-12">
                 <MainContent/>
             </div>

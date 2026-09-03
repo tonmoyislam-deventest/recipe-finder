@@ -1,10 +1,28 @@
+import DetailsHeader from "../components/details/details-header/DetailsHeader";
+import Ingredients from "../components/details/ingredients/Ingredients";
+import Instruction from "../components/details/instructions/Instruction";
+import RecipeInfo from "../components/details/recipe-info/recipeInfo";
 
 const DetailsPage = () => {
   return (
-    <div>
-      <h1 className="text-whitec">page 2</h1>
-    </div>
-  )
-}
+    <div className="max-w-337.5 m-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-290 m-auto">
+        {/* header */}
+        <DetailsHeader />
 
-export default DetailsPage
+        {/* Recipe Content */}
+        <div className="max-w-206 m-auto mt-13">
+          <RecipeInfo />
+
+          {/* Ingredients */}
+          <Ingredients />
+
+          {/* Instructions */}
+          <Instruction />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default DetailsPage;
