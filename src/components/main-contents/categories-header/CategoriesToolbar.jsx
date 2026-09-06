@@ -5,7 +5,7 @@ const CategoriesToolbar = () => {
   let { isChangedSortBy, input, setInput, searchedValue, isClickEnter } =
     useContext(RecipeContext);
   return (
-    <div className="flex w-full flex-col sm:flex-row sm:items-center md:justify-between gap-4">
+    <div className="flex w-full flex-col mb-7 sm:flex-row sm:items-center md:justify-between gap-4">
       {/* search + sort */}
       <h1 className="text-white font-Playfair font-bold text-3xl py-8">
         Categories

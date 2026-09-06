@@ -2,7 +2,6 @@ import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 
 const CATEGORIES_API_URL = import.meta.env.VITE_API_CATEGORIES;
-// const RECIPE_DETAILS_API_URL = import.meta.env.VITE_API_RECIPE_DETAILS;
 
 export const RecipeContext = createContext();
 
@@ -14,7 +13,6 @@ const Contexts = (props) => {
     let [input, setInput] = useState("");
     let [fullRecipesById, setfullRecipesById] = useState([]);
     let [search, setSearch] = useState(false);
-    let [showDetails, setShowDetails] = useState("");
 
 
     let getCategories = (e) => {
@@ -128,7 +126,7 @@ const Contexts = (props) => {
                 setfullRecipesById,
                 search,
                  setSearch,
-                 showDetails, setShowDetails,
+                 
             }}
         >
             {/* APP */}

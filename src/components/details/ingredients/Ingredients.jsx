@@ -1,5 +1,16 @@
 
-const Ingredients = () => {
+const Ingredients = ({detailsRecipe,setDetailsRecipe}) => {
+
+
+let ingredients = [];
+
+for (let key in detailsRecipe) {
+
+    if (key.startsWith("strIngredient")) {
+        ingredients.push(detailsRecipe[key]);
+    }
+
+}
   return (
         <div className="mt-10">
             <div className="flex items-center gap-3 mb-4">
@@ -9,18 +20,13 @@ const Ingredients = () => {
             </div>
 
             <ul className="text-white space-y-3 pl-5 list-disc">
-              <li>175g Butter</li>
-              <li>175g Caster Sugar</li>
-              <li>140g Self-raising Flour</li>
-              <li>50g Almonds</li>
-              <li>½ tsp Baking Powder</li>
-              <li>3 Medium Eggs</li>
-              <li>½ tsp Vanilla Extract</li>
-              <li>¼ teaspoon Almond Extract</li>
-              <li>½ tsp Pink Food Colouring</li>
-              <li>200g Apricot</li>
-              <li>1kg Marzipan</li>
-              <li>Dusting Icing Sugar</li>
+              {ingredients.filter(ingredient=> {
+                if(ingredient) {
+                  return true
+                }
+              }).map((ingredient,index)=>{
+                return <li key={index}>{ingredient}</li>
+              })}
             </ul>
           </div>
 

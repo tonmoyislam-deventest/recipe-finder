@@ -3,7 +3,7 @@ import { RecipeContext } from "../../all-context/Contexts"
 import { Link } from "react-router-dom";
 
 const RecipeContent = () => {
-    const { recipes, sortBy, setSortBy, input, setInput, fullRecipesById, setfullRecipesById, search, setSearch, showRecipeDetails } = useContext(RecipeContext);
+    const { recipes, sortBy, setSortBy, input, setInput, fullRecipesById, setfullRecipesById, search, setSearch } = useContext(RecipeContext);
 
     let filterdRecipesBySearch = fullRecipesById.filter((recipeById) => {
         let searchValue = input.trim().toLowerCase();
