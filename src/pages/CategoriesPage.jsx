@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import Hero from "../components/hero/Hero.jsx";
 import MainContent from "../components/main-contents/MainContent.jsx";
 
