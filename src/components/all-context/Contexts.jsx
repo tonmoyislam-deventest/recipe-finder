@@ -9,11 +9,17 @@ const Contexts = (props) => {
   const [categories, setCategories] = useState([]); //API left
   let [selectCategories, setSelectCategories] = useState("Dessert");
   let [recipes, setRecipes] = useState([]); //API right
+  let [sortBy, setSortBy] = useState([]); //API right
+
+
 
   let getCategories = (e) => {
     setSelectCategories(e.target.textContent);
   };
 
+ let isChangedSortBy = (e)=>{
+    setSortBy(e.target.value)
+ }
   useEffect(() => {
     let getData = async () => {
       try {
@@ -49,6 +55,9 @@ const Contexts = (props) => {
         selectCategories,
         recipes,
         setRecipes,
+        sortBy,
+         setSortBy,
+        isChangedSortBy,
       }}
     >
       {/* APP */}
