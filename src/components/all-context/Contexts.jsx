@@ -1,33 +1,60 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react"
+import { createContext, useEffect, useState } from "react";
 
-const CATEGORIES_API_URL = import.meta.env.VITE_API_CATEGORIES
+const CATEGORIES_API_URL = import.meta.env.VITE_API_CATEGORIES;
 
-export const RecipeContext = createContext(); 
+export const RecipeContext = createContext();
 
 const Contexts = (props) => {
-    const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]); //API left
+  let [selectCategories, setSelectCategories] = useState("Dessert");
+  let [recipes, setRecipes] = useState([]); //API right
 
-    useEffect(()=>{
-        let getData = async ()=>{
-            try{
-                let response = await axios.get(CATEGORIES_API_URL);
-                setCategories(response.data.categories);
-            }catch(error){
-               setCategories(error);
-            }
-            
+  let getCategories = (e) => {
+    setSelectCategories(e.target.textContent);
+  };
 
-        };
-        getData();
-    },[])
+  useEffect(() => {
+    let getData = async () => {
+      try {
+        let response = await axios.get(`${CATEGORIES_API_URL}categories.php`);
+        setCategories(response.data.categories);
+      } catch (error) {
+        setCategories(error);
+      }
+    };
+    getData();
+  }, []);
+
+  useEffect(() => {
+    let getSelectCategories = async () => {
+      try {
+        let response = await axios.get(
+          `${CATEGORIES_API_URL}filter.php?c=${selectCategories}`,
+        );
+        setRecipes(response.data.meals);
+      } catch (error) {
+        setRecipes(error);
+      }
+    };
+    getSelectCategories();
+  }, [selectCategories]);
+
   return (
-        <RecipeContext.Provider value={[categories,setCategories]}>
-            {/* APP */}
-            {props.children} 
-        </RecipeContext.Provider>
-      
-  )
-}
+    <RecipeContext.Provider
+      value={{
+        categories,
+        setCategories,
+        getCategories,
+        selectCategories,
+        recipes,
+        setRecipes,
+      }}
+    >
+      {/* APP */}
+      {props.children}
+    </RecipeContext.Provider>
+  );
+};
 
-export default Contexts
+export default Contexts;
