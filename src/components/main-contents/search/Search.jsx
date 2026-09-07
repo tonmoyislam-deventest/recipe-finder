@@ -4,28 +4,24 @@ import { RecipeContext } from "../../all-context/Contexts";
 const CategoriesToolbar = () => {
   let { isChangedSortBy, input, setInput, searchedValue, isClickEnter } =
     useContext(RecipeContext);
-  return (
-    <div className="flex w-full flex-col mb-7 sm:flex-row sm:items-center md:justify-between gap-4">
-      {/* search + sort */}
-      <h1 className="text-white font-Playfair font-bold text-3xl py-8">
-        Categories
-      </h1>
 
-      <search>
-        <form onSubmit={isClickEnter}>
+  return (
+    <div className="mt-2 mb-5 sm:mt-10 sm:mb-10 px-4 grid gap-3 sm:grid-cols-3 items-center">
+      <search className="sm:col-span-2 h-10 sm:h-12 w-full">
+        <form onSubmit={isClickEnter} className="h-full">
           <input
             type="text"
             placeholder="Search recipes and more..."
             value={input}
-            className="w-full sm:w-87.5 lg:w-90 p-y-20 h-12 rounded-full border border-[#3A4358] bg-transparent px-6 text-white outline-none placeholder:text-[#3A4358]"
+            className="w-full h-full rounded-full border border-[#3A4358] bg-transparent px-4 sm:px-6 text-white outline-none placeholder:text-[#3A4358]"
             onInput={searchedValue}
           />
         </form>
       </search>
 
-      <div className="h-12 bg-[#E5E7EB] rounded-full px-5 ">
+      <div className="w-32.5 sm:w-auto ml-auto sm:col-span-1 px-4 h-10 sm:h-12 bg-[#E5E7EB] rounded-full flex items-center justify-center">
         <select
-          className="h-full w-full sm:w-auto rounded-full text-[#0E1325] font-semibold outline-none cursor-pointer"
+          className="h-full bg-transparent text-[#0E1325] text-[0.8rem] sm:text-base font-semibold outline-none cursor-pointer"
           onChange={isChangedSortBy}
           defaultValue="name"
         >

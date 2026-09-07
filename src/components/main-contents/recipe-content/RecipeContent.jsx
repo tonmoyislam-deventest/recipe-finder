@@ -22,9 +22,8 @@ const RecipeContent = () => {
 
     let displayRecipe = search ? filterdRecipesBySearch : sortBy === "id" ? selectSort : recipes;
     return (
-        <div className="w-full">
-            <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[clamp(200px,3vw,250px)] lg:auto-rows-auto gap-5 sm:gap-6 lg:gap-7">
 
+            <div className="grid grid-cols-1 md:grid-cols-3 md:auto-rows-[clamp(200px,3vw,250px)] lg:auto-rows-auto gap-5 sm:gap-6 lg:gap-7">
                 {displayRecipe.map((elem, index) => {
                     return (
                         <Link to={`/categories/details-page/${elem.idMeal}`} key={index}>
@@ -45,7 +44,6 @@ const RecipeContent = () => {
                 })}
 
             </div>
-        </div>
     )
 }
 

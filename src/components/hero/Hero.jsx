@@ -17,7 +17,7 @@ const Hero = () => {
 
             <img
                 src={herotext}
-                className="absolute w-[45%] h-auto top-[20%] right-[10%] lg:w-[45%] xl:w-[45%] 2xl:w-[470px]"
+                className="absolute w-[45%] h-auto top-[20%] right-[10%] lg:w-[45%] xl:w-[45%] 2xl:w-117.5"
             />
         </div>
     );
