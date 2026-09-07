@@ -5,7 +5,7 @@ import RecipeContent from "../components/main-contents/recipe-content/RecipeCont
 
 const CategoriesPage = () => {
     return (
-        <div className="max-w-337.5 m-auto pb-10">
+        <div className="max-w-360 m-auto pb-10">
             <Hero />
             <div className="grid grid-cols-1 px-4 sm:px-8  sm:text-xl md:text-[0.8rem] lg:text-[1rem] md:grid-cols-[1fr_3fr] gap:4 sm:gap-7">
                 <Categories />
