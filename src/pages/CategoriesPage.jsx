@@ -10,7 +10,7 @@ const CategoriesPage = () => {
             <div className="grid grid-cols-1 px-4 sm:px-8  sm:text-xl md:text-[0.8rem] lg:text-[1rem] md:grid-cols-[1fr_3fr] gap:4 sm:gap-7">
                 <Categories />
                 <div className="w-full">
-                    <Search/>
+                    <Search />
                     <RecipeContent />
                 </div>
             </div>

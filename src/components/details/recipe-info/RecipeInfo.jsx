@@ -10,7 +10,7 @@ const RecipeInfo = ({img,name,category,area}) => {
           />
 
           {/* Recipe Name */}
-          <h1 className="text-white font-Playfair font-bold text-4xl sm:text-5xl mt-8">
+          <h1 className="text-white font-Playfair font-bold text-3xl sm:text-3xl lg:text-5xl mt-8">
             {name}
           </h1>
 
