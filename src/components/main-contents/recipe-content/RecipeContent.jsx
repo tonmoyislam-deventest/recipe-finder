@@ -1,20 +1,23 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { RecipeContext } from "../../all-context/Contexts"
 import { Link } from "react-router-dom";
+import RecipeContentSkeleton from "./RecipeContentSkeleton";
 
 const RecipeContent = () => {
-    const { recipes, sortBy, setSortBy, input, setInput, fullRecipesById, setfullRecipesById, search, setSearch } = useContext(RecipeContext);
+    const { recipes, sortBy, setSortBy, input, setInput, fullRecipesById, setfullRecipesById, search, setSearch, loeading, setLoading } = useContext(RecipeContext);
+    const skeletonItems = Array.from({ length: 50 });
 
     let filterdRecipesBySearch = fullRecipesById.filter((recipeById) => {
         let searchValue = input.trim().toLowerCase();
 
         if (recipeById.strMeal?.toLowerCase().includes(searchValue) || recipeById.strArea?.toLowerCase().includes(searchValue) || recipeById.idMeal?.includes(searchValue) || recipeById.strInstructions?.toLowerCase().includes(searchValue)) {
+
             return true
-            
+
         } else {
             return false
         }
-        
+
     });
 
 
@@ -22,9 +25,12 @@ const RecipeContent = () => {
     let selectSort = [...recipes].sort((a, b) => {
         return a.idMeal - b.idMeal;
     });
+
     let selectSortWithSearch = [...filterdRecipesBySearch].sort((a, b) => {
         return a.idMeal - b.idMeal;
     });
+
+
 
     let displayRecipe = null;
 
@@ -37,29 +43,30 @@ const RecipeContent = () => {
             displayRecipe = filterdRecipesBySearch;
 
         } else {
-             displayRecipe = [];
+            displayRecipe = [];
         }
 
     } else {
-        if(sortBy === "id") {
+        if (sortBy === "id") {
             displayRecipe = selectSort;
-        }else {
+        } else {
             displayRecipe = recipes
         }
 
     }
 
-        return (
+    return (
 
-            <div className="relative grid grid-cols-1 md:grid-cols-3 md:auto-rows-[clamp(200px,3vw,250px)] lg:auto-rows-auto gap-5 sm:gap-6 lg:gap-7">
-                
-                {displayRecipe.length > 0 ? displayRecipe.map((elem, index) => {
+        <div className="relative grid grid-cols-1 md:grid-cols-3 md:auto-rows-[clamp(200px,3vw,250px)] lg:auto-rows-auto gap-5 sm:gap-6 lg:gap-7">
 
+            {displayRecipe.length > 0
+                ? displayRecipe.map((elem, index) => {
                     return (
-                        <Link to={`/categories/details-page/${elem.idMeal}`} key={index}>
-                            <div
-                                className="bg-[#3A4358] p-2 rounded-xl overflow-hidden"
-                            >
+                        <Link
+                            to={`/categories/details-page/${elem.idMeal}`}
+                            key={index}
+                        >
+                            <div className="bg-[#3A4358] p-2 rounded-xl overflow-hidden">
                                 <img
                                     src={elem.strMealThumb}
                                     className="w-full aspect-[clamp(6/3,6/3,6/2)] sm:aspect-4/2 md:h-35 xl:h-50 object-cover rounded-xl"
@@ -70,11 +77,18 @@ const RecipeContent = () => {
                                 </p>
                             </div>
                         </Link>
-                    )
-                }) : <p className="text-white text-8xl m-auto h-screen absolute top-20 right-70">Not Found</p>}
-
-            </div>
-        )
+                    );
+                })
+                : loeading
+                    ? skeletonItems.map((_, index) => {
+                        return <RecipeContentSkeleton key={index} />;
+                    })
+                    : search
+                        ? <p className="text-white text-4xl">Not Found</p>
+                        : null
+            }
+        </div>
+    )
 }
 
 export default RecipeContent

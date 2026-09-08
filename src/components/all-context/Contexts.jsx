@@ -13,6 +13,8 @@ const Contexts = (props) => {
   let [input, setInput] = useState("");
   let [fullRecipesById, setfullRecipesById] = useState([]);
   let [search, setSearch] = useState(false);
+  let [loeading, setLoading] = useState(true);
+
 
   let getCategories = (e) => {
     setSelectCategories(e.target.textContent);
@@ -33,10 +35,17 @@ const Contexts = (props) => {
   let isClickEnter = (e) => {
     e.preventDefault();
     setSearch(true);
-
-
     
 };
+
+useEffect(() => {
+    if (search && fullRecipesById.length > 0) {
+        setLoading(false);
+    }
+}, [fullRecipesById]);
+
+
+
 
   useEffect(() => {
     let getData = async () => {
@@ -64,48 +73,29 @@ const Contexts = (props) => {
     getSelectCategories();
   }, [selectCategories]);
 
-  // useEffect(() => {
-  //     let getRecipesId = async () => {
-  //         try {
-  //             let fullRecipes = [];
-  //             for (let meal of recipes) {
-  //                 let response = await axios.get(
-  //                     `${CATEGORIES_API_URL}lookup.php?i=${meal.idMeal}`,
-  //                 );
-  //                 fullRecipes.push(response.data.meals[0]);
-  //             }
-  //             setfullRecipesById(fullRecipes);
-
-  //         } catch (error) {
-  //             alert(error);
-  //         }
-  //     };
-
-  //     getRecipesId();
-  // }, [recipes]);
-
   useEffect(() => {
     let getRecipesId = async () => {
-      try {
-        let fullRecipes = await Promise.all(
-          recipes.map(async (meal) => {
-            let response = await axios.get(
-              `${CATEGORIES_API_URL}lookup.php?i=${meal.idMeal}`,
-            );
+        try {
+            let fullRecipes = [];
 
-            return response.data.meals[0];
-          }),
-        );
+            for (let meal of recipes) {
+                let response = await axios.get(
+                    `${CATEGORIES_API_URL}lookup.php?i=${meal.idMeal}`,
+                    
+                );
+                fullRecipes.push(response.data.meals[0]);
+            }
 
-        setfullRecipesById(fullRecipes);
-      } catch (error) {
-        alert(error);
-      }
+            setfullRecipesById(fullRecipes);
+
+        } catch (error) {
+            alert(error);
+        }
     };
-    if (recipes.length > 0) {
-      getRecipesId();
-    }
-  }, [recipes]);
+
+    getRecipesId();
+}, [recipes]);
+
 
   return (
     <RecipeContext.Provider
@@ -127,6 +117,8 @@ const Contexts = (props) => {
         setfullRecipesById,
         search,
         setSearch,
+        loeading, 
+        setLoading,
       }}
     >
       {/* APP */}
