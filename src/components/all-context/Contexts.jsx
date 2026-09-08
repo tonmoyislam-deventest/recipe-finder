@@ -35,14 +35,14 @@ const Contexts = (props) => {
   let isClickEnter = (e) => {
     e.preventDefault();
     setSearch(true);
-    
-};
 
-useEffect(() => {
-    if (search && fullRecipesById.length > 0) {
-        setLoading(false);
-    }
-}, [fullRecipesById]);
+  };
+
+  // useEffect(() => {
+  //     if (search && fullRecipesById.length > 0) {
+  //         setLoading(false);
+  //     }
+  // }, [fullRecipesById]);
 
 
 
@@ -73,28 +73,35 @@ useEffect(() => {
     getSelectCategories();
   }, [selectCategories]);
 
+
   useEffect(() => {
     let getRecipesId = async () => {
-        try {
-            let fullRecipes = [];
+      try {
+        let fullRecipes = [];
+        setLoading(true);
 
-            for (let meal of recipes) {
-                let response = await axios.get(
-                    `${CATEGORIES_API_URL}lookup.php?i=${meal.idMeal}`,
-                    
-                );
-                fullRecipes.push(response.data.meals[0]);
-            }
 
-            setfullRecipesById(fullRecipes);
+        for (let meal of recipes) {
+          let response = await axios.get(
+            `${CATEGORIES_API_URL}lookup.php?i=${meal.idMeal}`,
 
-        } catch (error) {
-            alert(error);
+          );
+          fullRecipes.push(response.data.meals[0]);
         }
-    };
 
-    getRecipesId();
-}, [recipes]);
+        setfullRecipesById(fullRecipes);
+        setLoading(false);
+
+
+      } catch (error) {
+        alert(error);
+
+      }
+    };
+    if(recipes.length > 0) {
+      getRecipesId();
+    }
+  }, [recipes]);
 
 
   return (
@@ -117,7 +124,7 @@ useEffect(() => {
         setfullRecipesById,
         search,
         setSearch,
-        loeading, 
+        loeading,
         setLoading,
       }}
     >
