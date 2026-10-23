@@ -8,7 +8,7 @@ Users can explore recipes by category, search for recipes, sort recipes by ID, a
 
 React Recipe Finder & Search Application
 
-**Live Link:** 
+**Live Link:**  [Live Link:](https://recipe-finder-deventest.netlify.app/categories)
 
 ## Preview
 
