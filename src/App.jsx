@@ -12,8 +12,8 @@ const App = () => {
         <Route path="/" element={<Navigate to="/categories" />} />
         <Route path="/categories" element={<CategoriesPage/>}/>
         <Route path="/categories/details-page/:id" element={<DetailsPage/>}/>
-        <Route path="*" element={<NotFound/>}></Route>
-      </Routes>
+        <Route path="*" element={<NotFound/>}/>
+        </Routes>
       
     </div>
   )
