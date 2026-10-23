@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import DetailsHeader from "../components/details/details-header/DetailsHeader";
 import Ingredients from "../components/details/ingredients/Ingredients";
 import Instruction from "../components/details/instructions/Instruction";
-import RecipeInfo from "../components/details/recipe-info/recipeInfo";
+import RecipeInfo from "../components/details/recipe-info/RecipeInfo";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
